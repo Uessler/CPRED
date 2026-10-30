@@ -1,0 +1,12 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const M=require('../src/library/public/model.js');
+test('dados persistidos preservam personagem e não compartilham coleções',()=>{const a=M.defaults('Vex'),b=M.defaults('Outro');a.weapons.push({name:'Teste'});assert.equal(b.weapons.length,0);assert.equal(M.normalize(a).handle,'Vex');});
+test('perícias usam atributo correto',()=>{const d=M.normalize({stats:{REF:7,DEX:4},skills:{Pistolas:6,Esquiva:3}});assert.equal(M.skillBase(d,'Pistolas'),13);assert.equal(M.skillBase(d,'Esquiva'),7);});
+test('crítico positivo rola somente um dado extra',()=>{const values=[.99,.99];const r=M.rollCheck(10,2,()=>values.shift());assert.deepEqual(r,{first:10,extra:10,total:32});assert.equal(values.length,0);});
+test('crítico negativo subtrai um dado sem zerar a base',()=>{const values=[0,.5];assert.deepEqual(M.rollCheck(10,-2,()=>values.shift()),{first:1,extra:6,total:3});});
+test('rolagem normal não usa dado adicional',()=>assert.deepEqual(M.rollCheck(8,0,()=>.4),{first:5,extra:0,total:13}));
+test('dano detecta dois seis sem adicionar dano crítico automaticamente',()=>{const r=M.rollDamage('2d6+2',()=>.999);assert.equal(r.total,14);assert.equal(r.critical,true);});
+test('expressões de dano rejeitam código e excesso de dados',()=>{for(const x of ['alert(1)','21d6','0d6','2d20','-1d6'])assert.throws(()=>M.rollDamage(x,Math.random));});
+test('importação normaliza limites e rejeita versões incompatíveis',()=>{const d=M.normalize({hp:999,maxHp:20,stats:{LUCK:4},luck:99,skills:{Pistolas:999}});assert.equal(d.hp,20);assert.equal(d.luck,4);assert.equal(d.skills.Pistolas,10);assert.throws(()=>M.normalize({schema:9}));assert.throws(()=>M.normalize([]));});
+test('round-trip mantém inventário, história e especialidade',()=>{const d=M.defaults('Echo');d.items=[{name:'Agent',qty:1,notes:'Pessoal'}];d.life[M.life[0]]='Origem própria';d.specialties.Idioma='Português';const a=M.normalize(d),b=M.normalize(JSON.parse(JSON.stringify(a)));assert.deepEqual(a,b);});

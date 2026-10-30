@@ -1,0 +1,10 @@
+{
+  "name": "SEXORED · Edgerunner Console",
+  "version": "0.3.1",
+  "namespace": "local.sexored.red",
+  "authors": ["João"],
+  "shortDescription": "Ficha e rolagens em português para Cyberpunk RED.",
+  "description": "Framework independente da comunidade: ficha HTML5, perícias, equipamento e histórico de rolagens. Dados salvos nos tokens da campanha.",
+  "allowsUriAccess": true,
+  "readMeFile": "readme.md"
+}

@@ -1,0 +1,12 @@
+Pacote: Cyberpunk RED Megatoken Pack — PNGs
+Autor/editor: R. Talsorian Games
+Página oficial: https://rtalsoriangames.com/downloadable-content/
+Download: https://rtalsoriangames.com/wp-content/uploads/2026/07/Megatoken-Pack-PNGs.zip
+Baixado em: 30/10/2026
+
+680 marcadores numerados de corporações, organizações criminosas, gangues e segurança.
+Os arquivos originais foram preservados em tokens/Megatoken-Pack.
+As cópias dentro do add-on possuem nomes curtos para compatibilidade com os URIs do MapTool.
+O catálogo tokens.js mantém o caminho e nome originais de cada imagem.
+
+A arte pertence aos titulares originais e não faz parte do código autoral do SEXORED.

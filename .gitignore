@@ -1,0 +1,9 @@
+perfil-maptool/
+work/
+dist/
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+__pycache__/

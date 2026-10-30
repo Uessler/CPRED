@@ -1,0 +1,6 @@
+[h: id = json.get(macro.args, "id")]
+[h: data = json.get(macro.args, "data")]
+[h: setProperty("SEXORED", data, id)]
+[h: handle = json.get(data, "handle")]
+[h, if(length(handle) > 0): setName(handle, id)]
+[h: macro.return = json.set("{}", "ok", 1)]
